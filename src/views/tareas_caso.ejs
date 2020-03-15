@@ -1,0 +1,91 @@
+<% include partials/_header%>
+<% include partials/menu%>
+
+
+<div class="container-fluid">
+   
+        <div class="row">
+             <!-- Formulario-->
+              
+             <!--Tabla para listar los datos-->
+             <div class="col-md-12">
+                    <font size="2" face="Serif" >
+                 <table class="table table-bordered table-hover" id="tarea_table">
+                        <p><strong>Demandado: <%=demandado%>,  Proceso: <%=proceso%></strong></p> 
+<thead>
+ <tr>
+     <th>#</th>
+    
+     <th>Tarea</th>
+     <th>Fecha de Ejcucion</th>
+     <th>Comentarios</th>
+     <!-- <th>Estado Tarea</th> -->
+     <th>Creado por:</th>
+     <th>Fecha Ejecutada</th>
+ </tr>
+</thead>
+<tbody>
+
+    
+        <% for (var i=0; i < tarea.length; i++) {%>
+            <tr>
+                <td><%= i+1 %> </td>
+                <!-- <td>
+                 Demandado: <%=demandado%>,  Proceso: <%=proceso%>
+        <ul class="list-group">
+                                <li class="list-group-item"><%=tasks[0].datos_cliente.nombre%></li>
+                                <li class="list-group-item"><%=tasks[0].datos_cliente.tipo_proceso%></li>
+                                <li class="list-group-item"><%=tasks[0].datos_titular.nombre%></li>
+                                <li class="list-group-item"><%=tasks[0].datos_titular.cedula%></li>
+                        </ul>
+                </td> -->
+                <td>
+            
+                <%=tarea[i].descripcion%>
+            
+            </td>
+           
+            <td><%=moment(tarea[i].fecha).format('LLL')%></td><!--Fecha base de Datos en formato español-->
+                                               
+            <td>
+                    <%=tarea[i].observaciones%>
+                    </td>
+                    
+                  <!--  <td>
+                    <a href="/turn_tareas/<%=tarea[i]._id%>" onclick="return false" class=" btn <%=tarea[i].status ? ' btn-success': 'btn btn-dark' %>"><i class="fa fa-check"></i></a>Ejecutada
+                    <a id="delete" class="btn btn-danger" href="/delete_tareas/<%=tarea[i]._id%>"><i class="fa fa-eraser"></i></a>   Borrar
+                   <a href="/edit_tareas/<%=tarea[i]._id%>" class="btn btn-info">Editar</a>
+
+                   </td> -->
+                   <td><%=tarea[i].creado_por%> </td>
+                   <td><%=moment(tarea[i].fecha_ejecucion).format('LLL')%> </td>
+
+                    </tr>
+                    <%}%>
+           
+                   
+           </tbody>
+                 </table>
+ </font>
+                 
+ 
+             </div>
+
+
+        </div>
+        
+                </div>
+</div>  
+  
+         
+<script>
+    
+
+if(document.getElementById('verdadero') === true ){
+console.log('verdadero')
+
+}
+
+</script>
+              
+<% include partials/_footer%>

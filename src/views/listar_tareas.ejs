@@ -1,0 +1,129 @@
+<% include partials/_header%>
+<% include partials/menu%>
+<div id="like_button_container"></div>
+
+<div class="container-fluid">
+   
+        <div class="row">
+             <!-- Formulario-->
+              
+             <!--Tabla para listar los datos-->
+             <div class="col-md-12">
+                    <font size="2" face="Serif" >
+                 <table class="table table-bordered table-hover" id="tarea_table">
+<thead>
+
+    <% 
+        const cosa ="AJA PUE";
+    %>
+ <tr>
+     <th>#</th>
+     <th style = "display:none">Hora en formato Iso Date</th>
+     <th>Tarea</th>
+     <th>Fecha de Ejecucion</th>
+     <th style = "display:none">Recordar</th>
+     <th style = "display:none">aviso</th>
+     <th style = "display:none">Tiempo</th>
+     <th style = "display:none">Ahora</th>
+     <th>Recordatorio</th>
+     <th>Observaciones</th>
+     <th>Creado por</th>
+     <th>Estado Tarea</th>
+     
+     
+ </tr>
+</thead>
+<tbody>
+        <% for (var i=0; i < tasks.length; i++) {%>
+            <tr>
+                <td> <p><strong>Demandado:</strong><%=tasks[i].demandado%></p>
+                    <p><strong>Tipo proceso</strong>:<%=tasks[i].tipo_proceso%></p>
+                </td> 
+                <td>
+            <strong>
+                <%=tasks[i].descripcion%>
+            </strong>
+            </td>
+            <td style = "display:none" ><%=moment.utc(tasks[i].fecha).format('YYYY MM DD,hh:mm:ss')%></td><!--Fecha base de Datos en formato ISO Date-->
+            <td><%=moment(tasks[i].fecha).format('LLL')%></td><!--Fecha base de Datos en formato español-->
+            <td style = "display:none"> Recordar <%= tasks[i].recordar %> horas antes</td><!--Recordar-->
+            <!--<td> <%#(tasks[i].fecha).subtract(tasks[i].recordar, 'hours').format('LLL')%></td><!--Este es el aviso-->
+            <td style = "display:none"> <%=moment(tasks[i].fecha).subtract(12, 'hours').format('LLL')%></td><!--Este es el aviso-->
+            <td style = "display:none"> <%=moment(tasks[i].fecha).fromNow()%></td><!--Tiempo desde ahora-->
+            <td style = "display:none"> <%=moment().format('LLL')%></td><!--Fecha actual-->
+           
+            <!-- <td><%#date%></td>-->
+       <!--<td> <%#fecha%></td>-->
+       
+           <!--<td><%#date%></td>-->
+        <!--<td id"date"></td>-->
+            <!--<td> <%#(tasks[i].datos_titular.fecha_activacion).add(8,'d').format('LLL')%></td>
+            <td> <%#moment(tasks[i].datos_titular.fecha_activacion).fromNow()%></td>-->
+             
+           
+
+                    <td id="verdadero"><%  if (  moment(tasks[i].fecha).subtract(12, 'hours').isSameOrBefore(Date())  ) {%><!--recordatorio menor fecha actual-->
+                      
+                    
+                                            <div class="alert alert-danger">
+                                                    La tarea<strong> "<%=tasks[i].descripcion%>" </strong> Es critica
+                                                   
+                                                  </div>
+                                                 <%} else {%>
+                                            <div class="alert alert-info">
+                                                La tarea 
+                                                <strong>
+                                                    <%=tasks[i].descripcion%>
+                                                </strong>
+                                                
+                                                <!-- <strong>
+                                                    "<%=cosa%> "
+                                                </strong> --> 
+                                                No es critica
+                                              </div>
+                                                
+                                                
+                                                    <%}%> 
+                                                </td>
+                                                <td>
+                                                    <%=tasks[i].observaciones%>
+                                                </td>
+                                                <td><%=tasks[i].creado_por%></td>
+                     <td>
+                    <a href="/turn_tareas/<%=tasks[i]._id%>"  id="<%=[i]%>" class=" btn <%=tasks[i].status ? ' btn-success': 'btn btn-dark' %>"><i class="fa fa-check"></i></a><!--Cambiar estado-->
+                    <a id="delete" class="btn btn-danger" href="/delete_tareas/<%=tasks[i]._id%>"><i class="fa fa-eraser"></i></a><!--Borrar-->
+                    <a id="edit_tareas" class="btn btn-danger" href="/edit_tareas/<%=tasks[i]._id%>"><i class="fa fa-pencil-square-o"></i></a><!--Editar-->
+                   <!--<a href="/edit_tareas/<%=tasks[i]._id%>" class="btn btn-info">Editar</a>-->
+                    </td>
+                    </tr>
+                    <%}%>
+           
+                   
+           </tbody>
+                 </table>
+ </font>
+ 
+ 
+             </div>
+
+
+        </div>
+        
+                </div>
+</div>  
+  
+         
+<script>
+    tasks
+
+if(document.getElementById('verdadero') === true ){
+console.log('verdadero')
+
+}
+
+
+
+
+</script>
+         
+<% include partials/_footer%>

@@ -1,0 +1,27 @@
+<% include _header%>
+
+<!--Formulario para buscar-->
+
+<div class="container mb-5" >
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card bg bg-light">
+        <div class="card-body">
+          <form action="/find"  method="post" >
+            <div class="form-group">
+              <input type="text" name="nombre_titular" id="buscar" placeholder="Inserte un nombre" class="form-control" required >
+            </div>
+              <button type="submit" class="btn btn-outline-secondary btn-block">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>   
+            
+            
+         <!--Formulario para buscar prueba-->
+         
+         
+              
+         <% include _footer%>

@@ -1,0 +1,91 @@
+<% include partials/_header%>
+<% include partials/menu%>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por : ...">
+        </div>
+        
+    </div>
+           <div class="row">
+            <!--Tabla para listar los datos-->
+            
+             <div class="col-md-12">
+                <font size="2" face="Serif" >
+                 <table class="table table-bordered table-hover" id="myTable">
+<thead>
+ <tr>
+    <th class="th-sm">Cliente</th>
+    <th class="th-sm">Tipo</th>
+    <th class="th-sm">Demandado</th>
+    <th>Cedula</th>
+    <th>Juzgado</th>
+    <th>Radicado</th>
+    <th>Etapa act Procesal</th>
+    <th>Subrogado</th>
+    <th>Fecha de activacion</th>
+    <!--<th>operation</th>-->
+ </tr>
+</thead>
+<tbody>
+        <% for (var i=0; i < tasks.length; i++) {%>
+            <tr>
+              <td>
+                    <strong>
+                        <%=tasks[i].datos_cliente.nombre%>
+                    </strong>
+                    </td>
+                    <td><%=tasks[i].datos_cliente.tipo_proceso%></td>
+                <td>
+            <strong>
+                <%=tasks[i].datos_titular.nombre%>
+            </strong>
+            </td>
+            <td> <%=tasks[i].datos_titular.cedula%></td>
+            <!--<td> <%=tasks[i].datos_titular.tel%></td>
+            <td> <%=tasks[i].datos_titular.direccion%></td>
+            <td> <%=tasks[i].datos_titular.email%></td>-->
+            <td> <%=tasks[i].datos_titular.juzgado%></td>
+            <td> <%=tasks[i].datos_titular.radicado%></td>
+            <td> <%=tasks[i].etapa.instancia[tasks[i].etapa.instancia.length-1]%></td>
+            <td> <%=tasks[i].datos_titular.subrogado%></td>
+            <td> <%=moment(tasks[i].datos_titular.fecha_activacion).format('LLL')%></td>
+        
+        
+            <td>
+                  <div class="btn-group">  <!--Boton de status<a href="/turn/<%=tasks[i]._id%>" class=" btn <%=tasks[i].status ? ' btn-succes': 'btn btn-dark' %>">Done</a>
+                    Boton de Borrar<a id="delete" class="btn btn-danger" href="/delete/<%=tasks[i]._id%>">Delete</a>-->
+                    <a href="/show/<%=tasks[i]._id%>"  class="btn btn-info">Ver Todo</a>
+                    <a href="/edit/<%=tasks[i]._id%>"  class="btn btn-danger">Editar</a>
+                    </div>
+            </td>
+                    </tr>
+                   
+                     <%}%>
+</tbody>
+
+                 </table> 
+                 </font>
+                 </div>
+                 
+                
+             
+
+
+        </div>
+        
+                
+</div>  
+ <!-- do something
+ <% for (var i=0; i < tasks.length; i++) {%>
+    
+        <%# i+1 %> 
+
+    <h1><%#tasks[i].datos_codeudor.nombre[0]%></h1>
+
+ <%}%> -->
+
+                 
+<% include partials/_footer%>

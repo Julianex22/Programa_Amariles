@@ -1,0 +1,26 @@
+<% include _header%>
+<% include partials/menu%>
+
+<!--Formulario para buscar-->
+
+<div class="container mb-5" >
+                   <div class="col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                        <form action="/find/cedula"  method="post" >
+                            <div class="form-group">
+<input type="text" name="cedula" id="buscar" placeholder="Inserte una cedula" class="form-control" required >
+
+                            </div>
+                            
+                                  <button type="submit" class="btn btn-primary btn-block">buscar por cedula</button>
+                        </form>
+                    </div>
+                    </div>
+              </div> 
+            </div>   
+            
+            
+        
+              
+         <% include _footer%>

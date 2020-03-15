@@ -1,0 +1,437 @@
+<% include partials/_header%>
+<% include partials/menu%>
+
+ <!-- Formulario-->
+ <div class="col-md-12">
+        <div class="card "><!--Card principal-->
+            <div class="card-body"></div>
+            <form action="/edit/<%=task._id%>" method="post">
+                <div class="card"><!--Card secundario-->
+                    <div class="card-body">
+                            <h5 class="card-title">Datos basicos</h5>
+                       <div class="form-row">
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label for="">Cliente</label>
+                                    <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_cliente.nombre%>" >
+                                </div>
+                            </div>
+
+                                <div class="col-auto">
+                                    <div class="form-group">
+                                        <label for="">Demandante</label>
+                                        <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_demandante.nombre%>" >
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                        <div class="form-group">
+                                            <label for="">Cedula o Nit</label>
+                                            <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_demandante.cedula%>" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="">Tipo Proceso</label>
+                                                <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_cliente.tipo_proceso%>" >
+                                            </div>
+                                        </div>
+
+                                       
+                                            <div class="col-auto">
+                                                    <div class="form-group">
+                                                        <label for="">Demandado</label>
+                                                        <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_titular.nombre%>" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            <label for="">cedula</label>
+                                                            <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_titular.cedula%>" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                            <div class="form-group">
+                                                                <label for="">Direccion</label>
+                                                                <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_titular.direccion%>" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                                <div class="form-group">
+                                                                    <label for="">e-mail</label>
+                                                                    <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_titular.email%>" >
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-auto">
+                                                                <div class="form-group">
+                                                                    <label for="">Capital adeudado</label>
+                                                                    <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_titular.capital_adeudado%>" >
+                                                                </div>
+                                                            </div>
+
+                                                           
+                                                                <%for(var i = 0; i < task.datos_titular.tel.length; i++) {%>
+                                                                    <div class="col-auto">
+                                                                    <div class="form-group">
+                                                                        <label for="">celular</label>
+                                                                        <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_titular.tel[i]%>" >
+                                                                    </div>
+                                                                </div>
+
+                                                                <%}%>
+                                                           
+                                                           
+
+    
+                       </div> 
+                    </div>
+                </div>
+                
+
+
+
+  </div>
+
+                                        <!-- Datos generales del proceso-->
+                                        <div class="card"><!-- Segundo Card-->
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Datos generales proceso</h5>
+                                                  
+                                               
+                                <div class="form-row">
+                                   <div class="col-auto">
+                                            <div class="form-group">
+                                                    <label for="">Juzgado</label>
+                                                    <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_titular.juzgado%>" >
+                                                </div>
+                                      </div>
+                                      
+                                  
+
+                                  
+                                        <div class="col-auto">
+                                              <div class="form-group">
+                                                      <label for="">radicado</label>
+                                                      <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_titular.radicado%>" >
+                                                  </div>
+                                        </div>
+                                        
+                                                           
+                                                <div class="col-md-1">
+                                                      <div class="form-group">
+                                                              <label for="">subrogado</label>
+                                                              <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_titular.subrogado%>" >
+                                                          </div>
+                                                </div>
+                                                
+                                            
+
+                                            
+                                                    <div class="col-auto">
+                                                          <div class="form-group">
+                                                                  <label for="">fecha_activacion</label>
+                                                                  <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=moment.utc(task.datos_titular.fecha_activacion).format('LL')%>" >
+                                                              </div>
+                                                    </div>
+                                                    
+                                                
+
+                                                
+                                                    <div class="col-md-2">
+                                                          <div class="form-group">
+                                                                  <label for="">fecha_finalizacion</label>
+                                                                  <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=moment.utc(task.datos_titular.fecha_finalizacion).format('LL')%>" >
+                                                              </div>
+                                                    </div>
+
+                                                    <div class="col-md-1">
+                                                        <div class="form-group">
+                                                                <label for="">Dias</label>
+                                                                <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=moment(task.datos_titular.fecha_finalizacion).diff(task.datos_titular.fecha_activacion,'days')%>" >
+                                                            </div>
+                                                  </div>
+                                                    
+                                                
+
+                                               <div class="col-md-3">
+                                                <div class="form-row">
+                                                        <font size="2" face="Serif" >
+                                                                <table class="table table-sm table-bordered table-hover table-striped" id="myTable">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Etapa</th>
+                                                                                    <th>Fecha</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                      <tbody>
+                                                                          <%for (i=0; i < task.etapa.instancia.length; i++) {%>
+                                                                                
+                                                                        <tr>
+                                                                            <td><%=task.etapa.instancia[i]%></td>
+                                                                            <td><%=moment.utc(task.etapa.fecha[i]).format('LL')%></td>
+                                                                        </tr>
+                                                                          <%}%>
+                                                                      </tbody>
+                                                                    </tbody>
+                                                                  </table>
+                                                </font>
+                                                                                              
+                                                </div>
+                                            </div>
+
+
+                                            </div>
+
+                                            
+
+                                                                                                                   
+                                        </div>
+                                        </div>
+                                          
+
+
+
+
+                                                                <!--contacto-->
+
+                                                                <div class="card"><!--card tercero-->
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">Datos contacto</h5>
+                                                                        
+
+
+                                                                            <%for (var i=0; i < task.datos_contacto.nombre.length; i++) {%> 
+                                                                               <div class="form-row"> 
+                                                                                   <div class="form-group">
+                                                                                        <div class="col">
+                                                                                              <div class="form-group">
+                                                                                                      <label for="">nombre</label>
+                                                                                                      <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_contacto.nombre[i]%>" >
+                                                                                                  </div>
+                                                                                        </div>
+                                                                                        
+                                                                                    </div>
+                                                  
+                                                                                    <div class="form-group">
+                                                                                          <div class="col">
+                                                                                                <div class="form-group">
+                                                                                                        <label for="">cedula</label>
+                                                                                                        <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_contacto.cedula[i]%>" >
+                                                                                                    </div>
+                                                                                          </div>
+                                                                                          
+                                                                                      </div>
+                                                  
+
+
+
+
+
+
+                                                                                                <div class="form-group">
+                                                                                                  <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                                <label for="">e-mail</label>
+                                                                                                                <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=task.datos_contacto.email[i]%>" >
+                                                                                                            </div>
+                                                                                                  </div>
+                                                                                                  
+                                                                                              </div>
+
+                                                                                                  
+                                                                                                  <%for (j=0; j < 4; j++ ) {%>
+                                                                                                
+                                                                                                    
+                                                                                      
+                                                                                              <div class="col-md-auto">
+                                                                                                    <div class="form-group">
+                                                                                                            <label for="">celular <%=j + 1%></label>
+                                                                                                            
+                                                                                                            <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%if (i===0){%><%=task.datos_contacto.celular1[j]%>
+                                                                                                                <%} else if (i===1) {%><%=task.datos_contacto.celular2[j]%>
+                                                                                                                              <%} else if (i===2) {%><%=task.datos_contacto.celular3[j]%>
+                                                                                                                                  <%} else if (i===3) {%><%=task.datos_contacto.celular4[j]%>
+                                                                                                                                      <%} else if (i===4) {%><%=task.datos_contacto.celular5[j]%>      <%}%>">
+                                                                                                        </div>
+                                                                                              </div>
+                                                                                              
+                                                                                          
+                                                                                          <%}%>
+                                                                                          </div>
+                                                                                          <hr>
+                                                                                          <%}%>
+                                                   
+                                                                        
+                                                                    </div>
+                                                                </div>
+
+
+
+
+                                          
+
+                                          <!-- Datos codeudores-->
+                                            <div class="card"><!-- Card codeudores-->
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Datos codeudores</h5>
+                                                        
+                                                            <%for(var i=0; i < task.datos_codeudor.nombre.length; i++) {%>
+                                                                <div class="form-row align-items-center">
+                                                                    <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="textarea_Observaciones">Codeudor</label>
+                                                                        <input type="text" class="form-control form-control-sm" name="datos_titular.juzgado" id="" cols="80"  placeholder="" readonly value="<%=task.datos_codeudor.nombre[i]%>">
+                                                                    </div>
+                                                                     </div>   
+                                                                     <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="textarea_Observaciones">Cedula</label>
+                                                                        <input type="text" class="form-control form-control-sm" name="datos_titular.juzgado" id="" cols="80"  placeholder="" readonly value="<%=task.datos_codeudor.cedula[i]%>">
+                                                                    </div>
+                                                                    </div>
+
+                                                                    
+
+                                                                        <div class="col">
+                                                                            <div class="form-group">
+                                                                                <label for="textarea_Observaciones">Direccion</label>
+                                                                                <input type="text" class="form-control form-control-sm" name="datos_titular.juzgado" id="" cols="80"  placeholder="" readonly value="<%=task.datos_codeudor.direccion[i]%>">
+                                                                            </div>
+                                                                            </div>
+                                                                    <div class="col">
+                                                                    <div class="form-group">
+                                                                            <label for="textarea_Observaciones">Email</label>
+                                                                            <input type="text" class="form-control form-control-sm" name="datos_titular.juzgado" id="" cols="80"  placeholder="Readonly input here..." readonly value="<%=task.datos_codeudor.email[i]%>">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+
+                                                                <div class="form-row align-items-center"> 
+                                                                    <% for (var j=0 ; j < 4; j++ ) {%>
+                                                                    
+                                                                                       
+                                                                 <div class="col-md-auto">
+                                                                        <div class="form-group">
+                                                                            <label for="textarea_Observaciones">Telefono</label>
+                                                                            <input type="text" class="form-control form-control-sm" name="datos_titular.juzgado" id=""   placeholder="" readonly value="<%if (i===0){%><%=task.datos_codeudor.celular0[j]%>
+                                                                                                                                                                                                                          <%} else if (i===1) {%><%=task.datos_codeudor.celular1[j]%>
+                                                                                                                                                                                                                                        <%} else if (i===2) {%><%=task.datos_codeudor.celular2[j]%>
+                                                                                                                                                                                                                                            <%} else if (i===3) {%><%=task.datos_codeudor.celular3[j]%>
+                                                                                                                                                                                                                                                <%} else if (i===4) {%><%=task.datos_codeudor.celular4[j]%>      <%}%>">
+                                                                        </div>
+                                                                        </div> 
+                                                                    
+
+                                                                        <%}%>
+                                                            </div> 
+                                                            <hr>
+                                                                       <%}%>
+                                                            
+                                                            
+                                                    </div>
+                                                </div>
+
+                                                            <!--Avance de proceso-->
+                                             <div class="card">
+                                                    <div class="card-header">
+                                                            <h5>Avance proceso</h5>
+                                                    </div>
+                                                 <div class="card-body bg-light">
+                                                     <div class="form-row">
+                                                         <div class="col-md-auto">
+                                                     <%for(var i=0; i < task.avance_proceso.observaciones.length; i++) {%>
+                                                        
+                                                        <div class="card" style="width: 18rem;">
+                                                                <div class="card-header">
+                                                                        Observacion
+                                                                      </div>
+                                                                <div class="card-body">
+                                                                  
+                                                                  <p class="card-text"><%=task.avance_proceso.observaciones[i]%></p>
+                                                                  
+                                                                </div>
+                                                        </div>
+                                                                                  
+                                                           
+                                                     <%}%>     
+                                                      </div>
+                                                  
+                                                      
+                                                      <div class="col-md-auto">
+                                                            <%for(var i=0; i < task.avance_proceso.medidas.length; i++) {%>
+                                                               
+                                                               <div class="card" style="width: 18rem;">
+                                                                       <div class="card-header">
+                                                                               Medidas Cautelares
+                                                                             </div>
+                                                                       <div class="card-body">
+                                                                         
+                                                                         <p class="card-text"><%=task.avance_proceso.medidas[i]%></p>
+                                                                         
+                                                                       </div>
+                                                               </div>
+                                                                                         
+                                                                  
+                                                            <%}%>     
+                                                             </div>
+
+
+                                                             <div class="col-md-auto">
+                                                                    <%for(var i=0; i < task.avance_proceso.actuaciones.length; i++) {%>
+                                                                       
+                                                                       <div class="card" style="width: 18rem;">
+                                                                               <div class="card-header">
+                                                                                       Actuaciones
+                                                                                     </div>
+                                                                               <div class="card-body">
+                                                                                 
+                                                                                 <p class="card-text"><%=task.avance_proceso.actuaciones[i]%></p>
+                                                                                 
+                                                                               </div>
+                                                                       </div>
+                                                                                                 
+                                                                          
+                                                                    <%}%>     
+                                                                     </div>
+
+
+                                                                     <div class="col-md-auto">
+                                                                            <%for(var i=0; i < task.avance_proceso.impulsos.length; i++) {%>
+                                                                               
+                                                                               <div class="card" style="width: 18rem;">
+                                                                                       <div class="card-header">
+                                                                                               Impulsos procesales
+                                                                                             </div>
+                                                                                       <div class="card-body">
+                                                                                         
+                                                                                         <p class="card-text"><%=task.avance_proceso.impulsos[i]%></p>
+                                                                                         
+                                                                                       </div>
+                                                                               </div>
+                                                                                                         
+                                                                                  
+                                                                            <%}%>     
+                                                                             </div>
+
+                                                </div> 
+
+                                                  
+
+                                            </div>
+                                                    
+
+                                                 </div>
+                                             </div>
+
+
+                                            </div>
+        
+                     </form>
+
+                     
+        </div>
+    </div>
+    <%include partials/_footer%>
