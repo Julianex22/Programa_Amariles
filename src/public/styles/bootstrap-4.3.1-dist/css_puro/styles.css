@@ -1,0 +1,113 @@
+
+/*#body{
+  background-color:#F4F7EF;
+}
+*/
+
+.titulosadd{
+    text-align: center;
+    
+  }
+
+#myInput {
+    
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+
+
+#boton-ver-todo{
+background-color:#B7A23D;
+border-color:#B7A23D ;
+
+}
+
+#boton-editar-todo{
+  background-color:#284A66;
+  border-color:#284A66 ;
+  
+  }
+
+#boton-crear-tarea{
+  background-color:#B7A23D;
+  border-color:#B7A23D ;
+  
+  }
+
+  #boton-ver-tarea{
+    background-color:#284A66;
+    border-color:#284A66 ;
+    
+    }
+   .btn-info{
+    background-color:#284A66;
+    border-color:#284A66 ;
+    
+    }
+
+    
+    table{
+      font-size:12px;
+    }
+    table, td{
+      border:solid 1px;
+      padding:2px 4px;
+      border-collapse:collapse;
+      white-space: nowrap;
+    }
+    table tr:first-child{
+      text-align:center;
+      font-weight:bold;
+      vertical-align: top;
+    }
+   
+    .multiselect {
+      position:relative;
+    }
+   
+    .selectBox {
+      position: relative;
+    }
+   
+    .selectBox select {
+      text-align:center;
+      width: 100%;
+      font-weight: bold;
+    }
+   
+   
+    .overSelect {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+   
+    .checkboxes {
+      display: none;
+      border: 1px #dadada solid;
+      background-color:white;
+      overflow-y: auto;
+      max-height:200px;
+      position:absolute;
+      box-sizing: border-box;
+      min-width:100%;
+      white-space: nowrap;
+    }
+   
+    .checkboxes label {
+      display: block;
+      text-align:left;
+    }
+   
+    .checkboxes label:hover {
+      background-color: #1e90ff;
+    }
+  
+   

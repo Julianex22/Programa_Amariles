@@ -1,0 +1,254 @@
+<% include partials/_header%>
+ <% include partials/menu%>
+
+ <!-- Formulario-->
+ 
+  <div class="row justify-content-md-center">
+ <!--<div class="col-md-5">
+     
+        <div class="card">
+                <div class="card text-center">
+                        <div class="card-header">
+                            <h5>Agregar Etapa</h5>
+                        </div>
+                     </div>
+            <div class="card-body">
+            <form action="/edit_etapa/<%=task._id%>" method="post">
+                
+                <div class="card">
+                    <div class="card-body">
+                            
+                       <div class="form-row">
+                            <div class="col-md-1">
+                                
+                            </div>
+
+                                            <div class="col-auto">
+                                                  <div class="form-group">
+                                                          <label for="">etapa proceso</label>
+                                                          <input type="text" class="form-control form-control-sm"  name="" id="" placeholder=""  value="<%=task.etapa.instancia[(task.etapa.instancia).length-1]%>" >
+                                                      </div>
+                                            </div>
+                                            
+                                         <div class="col-auto">
+                                                      
+                                                              
+                                                              <div class="form-group col-md-auto">
+                                                                    <label for="sel2">Nueva etapa:</label>
+                                                                    <select class="form-control form-control-sm" name="instancia" id="sel2" required >
+                                                                        <option  value="<%=task.etapa.instancia[0]%>" selected disabled ><%=task.datos_titular.etapa%></option>
+                                                                        <option>Recepción</option>
+                                                                        <option  >Presentación</option>
+                                                                        <option  >Inadmite</option>
+                                                                        <option  >Admisión</option>
+                                                                        <option  >Notificación</option>
+                                                                        <option  >Sentencia</option>
+                                                                        <option  >Proceso fallido</option>
+                        
+                                                                    </select>
+                                                                </div> 
+
+                                                                <div class="form-group col-md-auto">
+                                                                        <label for="sel2">Fecha Etapa:</label>
+                                                                        <input type="date" name="fecha_etapa" id="" cols="80" class="form-control form-control-sm" required>
+                                                                    </div> 
+                                                             
+                                                </div>
+                                                
+                                                              </div>
+                                                                </div>
+
+        <div class="container">
+            <div class="form-row justify-content-md-center">
+                
+                    <div class="col col-md-5">
+                        <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
+                    </div>
+               
+            </div> 
+        </div> 
+             </div>
+         </form>
+        
+    </div>
+</div>
+</div>-->
+
+
+
+
+
+<div class="col-md-5">
+     
+        <div class="card">
+                <div class="card text-center">
+                        <div class="card-header">
+                            <h5>Editar Etapas</h5><!--Titulo de la primera seccion-->
+                        </div>
+                     </div>
+            <div class="card-body">
+            <form action="/edit/<%=task._id%>" method="post">
+                
+                <div class="card"><!--Card de Datos basicos-->
+                    <div class="card-body">
+                            
+                       <div class="form-row" >
+                           <div class="col-md-5">
+                               <label for="">Etapa proceso</label>
+                           </div>
+                           
+                           <div class="col-auto">
+                                <label for="sel2">Fecha Etapa</label>
+                            </div>
+                       
+                       </div>
+                       
+                       <div class="form-row" id="div_edit_etapa"><!--Este es el padre-->
+                        <%for (var i=0; i < task.etapa.instancia.length; i++){%>
+                            <div class="form-row">
+                             <div class="col-auto">
+
+                               
+                                        
+                                        <input type="text" class="form-control form-control-sm"  name="etapa.instancia" id="" placeholder=""  value="<%=task.etapa.instancia[i]%>" >
+                                    
+                              </div>
+                                          
+                                         <div class="col-auto">
+                                             
+                                                
+                                                <input type="date" name="etapa.fecha" id="" cols="80" class="form-control form-control-sm" value="<%=moment.utc(task.etapa.fecha[i]).format('YYYY-MM-DD')%>">
+                                            
+                                                             
+                                       </div>
+                                       </div>
+                                       <%}%>
+                           
+                             
+                                  </div>
+                                   <div class="form-row">
+                                <div class="col-auto" id="boton_add_etapa">
+                                    <button type="button" class="btn btn-primary" id ="botonaddetapa">+</button>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary" id ="boton_remove_etapa" >-</button>
+                                </div>
+                            </div>
+                         </div>
+
+        <div class="container">
+            <div class="form-row justify-content-md-center">
+                
+                    <div class="col col-md-5">
+                        <button type="submit" class="btn btn-primary btn-block" >Actualizar</button>
+                    </div>
+               
+            </div> 
+        </div> 
+             </div>
+         </form>
+        
+    </div>
+</div>
+</div>
+
+</div>
+
+
+<script>
+
+
+$("#botonaddetapa").one("click",function(){//el metodo one ejecuta el click una sola vez
+        
+var div = document.createElement('div')// crea un elemento div
+div.setAttribute('class', 'form-row')// Setea un atributo from row al div creado arriba
+
+div.innerHTML= ` <div class="col-auto">
+
+<div class="form-group">
+        
+<select class="form-control form-control-sm" name="etapa.instancia" id="opciones_etapa" onclick="activar_etapas()" required="">
+  
+
+   
+<option id="0" disabled>Recepción</option>
+<option id="1" disabled>Presentación</option>
+<option id="2" disabled>Inadmite</option>
+<option id="3" disabled>Admisión</option>
+<option id="4" disabled>Notificación</option>
+<option id="5" disabled>Sentencia</option>
+<option id="6" disabled>Proceso fallido</option>
+<!--<option id="7" disabled>Terminado</option>-->
+<option id="7">Terminado</option>
+
+</select>
+    </div>
+</div>
+<div class="col-auto">
+                                     <div class="form-group col-md-auto">
+                                        
+                                        <input type="date" name="etapa.fecha" id="" cols="80" class="form-control form-control-sm" required >
+                                    </div> 
+                                                     
+                               </div>
+`
+
+document.getElementById('div_edit_etapa').appendChild(div)//accede al padre de los div e inserta el elemento div como hijo
+var a = document.getElementById('div_edit_etapa');//accede al padre de los div que contienen los selects
+var b= a.children[a.children.length-2];//accede al penultimo elemento en el array de los hijos del padre de los select, este contiene 2 input
+var c= b.children[0];//accede al primer elemento del array (el cual es el div contenedor del input)
+var d= c.children[0];//accede al primer elemento del array el cual es el valor actual del input(el primer hijo de c)(Valor actual de la etapa)
+
+var etapas= document.getElementById("opciones_etapa").children;//accedo a los hijos del select los cuales son los options
+
+  for(var i=0; i < etapas.length; i++){// este array itera tantas veces como opciones hay en el input en este caso 8
+
+if (d.value===etapas[i].value){//d.value valor actual del input se compara con el valor 
+var h= etapas[i];
+var j= etapas[i+1]
+h.removeAttribute('disableb');
+j.setAttribute('selected', 'selected')
+
+
+}
+
+  }
+
+
+});
+
+
+
+$("#boton_remove_etapa").one("click",function removeEtapaFecha(){
+
+$("#div_edit_etapa").children().last().remove();
+
+});
+
+function activar_etapas(){
+
+var a = document.getElementById('div_edit_etapa');//accede al padre de los div que contienen los selects
+var b= a.children[a.children.length-2];//accede al penultimo elemento en el array de los hijos del padre de los select, este contiene 2 input
+var c= b.children[0];//accede al primer elemento del array (el cual es el div contenedor del input)
+var d= c.children[0];//accede al primer elemento del array el cual es el valor actual del input(el primer hijo de c)(Valor actual de la etapa)
+
+var etapas= document.getElementById("opciones_etapa").children;//accedo a los hijos del select los cuales son los options
+
+  for(var i=0; i < etapas.length; i++){// este array itera tantas veces como opciones hay en el input en este caso 8
+
+if (d.value===etapas[i].value){//d.value valor actual del input se compara con el valor 
+var h= etapas[i];
+
+h.removeAttribute('disableb');
+
+
+}
+
+  }
+
+}
+
+
+</script>
+
+    <%include partials/_footer%>

@@ -1,0 +1,224 @@
+<% include partials/_header%>
+
+ 
+              
+<% include partials/_footer%>
+
+<script>
+    aFiltros = [];
+    aFiltro  = [];
+    aStack   = [];
+    window.onload = function(){
+      x = document.querySelectorAll(".overSelect")
+      for(y of x){
+        y.addEventListener("click",showCheckboxes);
+      }
+    }
+   
+    function showCheckboxes() {
+      checkboxes = document.getElementById(this.dataset.checkboxes);
+      x = document.querySelectorAll(".overSelect");
+      for(i=0, t=x.length; i<t; i++ ){
+        if (x.item(i)==this){
+          n=i;
+          break;
+        }
+      }
+   
+      td = this.parentElement.parentElement.parentElement;
+      tr = td.parentElement;
+      for(i=0, t=tr.children.length; i<t; i++ ){
+        if( tr.children[i]==td ){
+          m=i;
+          break;
+        }
+      }
+   
+      if(checkboxes.style.display=='none' || checkboxes.style.display==""){
+        x= document.querySelectorAll(".checkboxes");
+        for(i=0, t=x.length; i<t; i++ ){
+          document.querySelectorAll(".checkboxes")[i].style.display="none";
+        }
+        if( aFiltros[n]==undefined ){
+          aFiltros[n]=[];
+        }
+   
+        table = document.getElementById("datos");
+        for(i=1, t=table.rows.length; i<t; i++){
+          text = table.rows[i].cells[n].innerHTML;
+          if(!aFiltros[n].includes(text)){
+            aFiltros[n].push(text);
+   
+            lbl = document.createElement("label");
+            txt = document.createTextNode(text);
+            chk = document.createElement("input");
+            chk.setAttribute("type", "checkbox");
+            lbl.appendChild(chk);
+            lbl.appendChild(txt);
+            checkboxes.appendChild(lbl);
+          }
+        }
+        checkboxes.style.display="block";
+      }else{
+        checkboxes.style.display='none';
+      }
+   
+      x = document.querySelectorAll("input[type=checkbox]");
+      for(y of x){
+        y.removeEventListener("click",setFiltro);
+        y.addEventListener("click",setFiltro);
+      }
+    }
+   
+    function setFiltro(){
+      x=document.querySelectorAll("div.multiselect");
+      div=this.parentElement.parentElement.parentElement ;
+      for(i=0, t=x.length; i<t; i++ ){
+        if (x.item(i)==div){
+          n=i;
+          break;
+        }
+      }
+   
+   
+      if(aFiltro[n]==undefined){
+        aFiltro[n]=[];
+      }
+   
+      text = this.nextSibling.textContent;
+      if( this.checked ){
+        aFiltro[n].push(text);
+      }else{
+        aFiltro[n].splice(aFiltro[n].indexOf(text),1);
+      }
+   
+      if(aFiltro[n].length){
+        if(!aStack.includes(n)){
+          aStack.push(n);
+        }
+      }else{
+        aStack.splice(aStack.indexOf(n),1);
+      }
+   
+      filtrar();
+    }
+   
+   
+    function filtrar(){
+      table = document.getElementById("datos");
+      for(i=1, t=table.rows.length; i<t; i++){
+        table.rows[i].style.display="";
+      }
+   
+      if(aStack.length){
+        for(n of aStack){
+          for(i=1, t=table.rows.length; i<t; i++){
+            if(table.rows[i].style.display!="none"){
+              text = table.rows[i].cells[n].innerHTML;
+              if(aFiltro[n].length>0){
+                if(!aFiltro[n].includes(text) ){
+                  table.rows[i].style.display="none"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    table{
+      font-size:12px;
+    }
+    table, td{
+      border:solid 1px;
+      padding:2px 4px;
+      border-collapse:collapse;
+      white-space: nowrap;
+    }
+    table tr:first-child{
+      text-align:center;
+      font-weight:bold;
+      vertical-align: top;
+    }
+   
+    .multiselect {
+      position:relative;
+    }
+   
+    .selectBox {
+      position: relative;
+    }
+   
+    .selectBox select {
+      text-align:center;
+      width: 100%;
+      font-weight: bold;
+    }
+   
+   
+    .overSelect {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+   
+    .checkboxes {
+      display: none;
+      border: 1px #dadada solid;
+      background-color:white;
+      overflow-y: auto;
+      max-height:200px;
+      position:absolute;
+      box-sizing: border-box;
+      min-width:100%;
+      white-space: nowrap;
+    }
+   
+    .checkboxes label {
+      display: block;
+      text-align:left;
+    }
+   
+    .checkboxes label:hover {
+      background-color: #1e90ff;
+    }
+  </style>
+   
+  <table id="datos">
+    <tr>
+      <td>
+        <div class="multiselect">
+          <div class="selectBox" >
+            <select id="lstOS" >
+              <option>COLUMNA 1</option>
+            </select>
+            <div class="overSelect" data-checkboxes="chksCol1"></div>
+          </div>
+          <div class="checkboxes" id="chksCol1"></div>
+        </div>
+      </td>
+      <td>
+        <div class="multiselect">
+          <div class="selectBox" >
+            <select id="lstOS" >
+              <option>COLUMNA 2</option>
+            </select>
+            <div class="overSelect" data-checkboxes="chksCol2"></div>
+          </div>
+          <div class="checkboxes" id="chksCol2"></div>
+        </div>
+      </td>
+      
+    </tr>
+    <tr><td>IJKL</td><td>456</td><td>1</td></tr>
+    <tr><td>IJKL</td><td>456</td><td>2</td></tr>
+    <tr><td>EFGH</td><td>123</td><td>3</td></tr>
+    <tr><td>EFGH</td><td>123</td><td>4</td></tr>
+    <tr><td>ABCD</td><td>123</td><td>5</td></tr>
+    <tr><td>ABCD</td><td>456</td><td>6</td></tr>
+    <tr><td>ABCD</td><td>123</td><td>7</td></tr>
+    <tr><td>Julian</td><td>71217</td><td>9</td></tr>
+  </table>

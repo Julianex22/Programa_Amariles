@@ -1,0 +1,125 @@
+<% include partials/_header%>
+<% include partials/menu%>
+
+
+<div class="container-fluid" id="container"><!--Contenerdor principal-->
+   
+        <div class="row" id="fila-formulario"><!--primera fila-->
+          <div class="col-md-5" id="columna-formulario" ><!--Columna del card principal-->
+            
+            <div class="col-md-8"><!--Columna del formulario-->
+              <div class="card">
+              <div class="card-header">
+                <h4>Tareas</h3>
+              </div>
+              <div class="card-body">
+<p><strong>Demandado:</strong> <%=task.datos_titular.nombre%></p>
+<p><strong>Tipo proceso</strong>: <%=task.datos_cliente.tipo_proceso%></p>
+                <form action="/tareas/<%=task._id%>" method="post">
+                    <div class="form-group">
+                   
+                        <div class="form-row">
+                          <textarea class="form-control form-control-sm" name="descripcion" id="" cols="7" rows="5" placeholder="Describa su tarea" required></textarea>
+                          
+                        </div> 
+                      </div>
+
+
+                      
+
+                      <div class="form-group">
+                          <div class="form-row">
+                              <label for="">Fecha de ejecucion</label>
+                              <input class="form-control-sm" type="datetime-local" name="fecha" id="" value="" required>
+                             
+                            </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="form-row">
+                          <label for="">Creado por:</label>
+                          <select class="form-control form-control-sm" name="creado_por" id="Cliente" required>
+                            <option name=""></option>
+                            <option name="" id="option_name">Sandra</option>
+                            <option name="">Juan Mauricio</option>
+                            <option name="">Natalia</option>
+                            <option name="">Natalia2</option>
+                            
+                        </select>
+                        </div>
+
+
+                      </div>
+                        <!--<div class="form-group col-md-0,9">
+                            <label for="input_Fecha">Recordar en (horas):</label>
+                            <select class="form-control" name="recordar" required>
+                                <option name="recordar" ></option>
+                                <option name="recordar" >1</option>
+                                <option name="recordar" >2</option>
+                                <option name="recordar" >3</option>
+                                <option name="recordar" >4</option>
+                                <option name="recordar" >5</option>
+                                <option name="recordar" >6</option>
+                                <option name="recordar" >7</option>
+                                <option name="recordar" >8</option>
+                                <option name="recordar" >9</option>
+                                <option name="recordar" >10</option>
+                                <option name="recordar" >11</option>
+                                <option name="recordar" >12</option>
+                                <option name="recordar" >13</option>
+                                <option name="recordar" >14</option>
+                                <option name="recordar" >15</option>
+                                <option name="recordar" >16</option>
+                                <option name="recordar" >17</option>
+                                <option name="recordar" >18</option>
+                                <option name="recordar" >19</option>
+                                <option name="recordar" >20</option>
+                                <option name="recordar" >21</option>
+                                <option name="recordar" >22</option>
+                                <option name="recordar" >23</option>
+                                <option name="recordar" >24</option>
+                                
+                            </select>
+                        </div>-->
+                        
+                   
+
+                    
+
+                      <div class="form-row">
+                        <div class="col-md-2">
+                            
+                           <button type="submit" class="btn btn-primary"  >Crear</button>
+                        
+                        </div>
+
+                      </div>
+
+                      <br>
+                
+                        
+         
+                    
+              </div>
+              
+                </form>
+
+
+
+            </div>
+            </div>
+            
+
+          </div>
+
+
+          
+          </div>
+
+          
+</div>
+  
+  
+
+    
+<% include partials/_footer%>

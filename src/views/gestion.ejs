@@ -1,0 +1,100 @@
+<% include partials/_header%>
+<% include partials/menu%>
+
+
+<div class="container-fluid">
+   
+        <div class="row">
+             <!-- Formulario-->
+              
+             <!--Tabla para listar los datos-->
+             <div class="col-md-12">
+                    <font size="2" face="Serif" >
+                 <table class="table table-bordered table-hover">
+<thead>
+ <tr>
+     <th>#</th>
+     <th>Nombre</th>
+     <th>Cedula</th>
+     <th>Tel</th>
+     <th>Direccion</th>
+     <th>e-mail</th>
+     <th>Juzgado</th>
+     <th>Radicado</th>
+     <th>Etapa Act Procesal</th>
+     <th>fecha de cobro</th>
+     <th>fecha actual</th>
+     <th>operations</th>
+     <th>Alertas</th>
+     
+ </tr>
+</thead>
+<tbody>
+        <% for (var i=0; i < tasks.length; i++) {%>
+            <tr>
+                <td><%= i+1 %> </td>
+                <td>
+            <strong>
+                <%=tasks[i].datos_titular.nombre%>
+            </strong>
+            </td>
+            <td> <%=tasks[i].datos_titular.cedula%></td>
+            <td> <%=tasks[i].datos_titular.tel%></td>
+            <td> <%=tasks[i].datos_titular.direccion%></td>
+            <td> <%=tasks[i].datos_titular.email%></td>
+            <td> <%=tasks[i].datos_titular.juzgado%></td>
+            <td> <%=tasks[i].datos_titular.radicado%></td>
+            <td> <%=tasks[i].datos_titular.etapa%></td>
+           
+            <!-- <td><%#date%></td>-->
+       <!--<td> <%#fecha%></td>-->
+       
+           <!--<td><%#date%></td>-->
+        <!--<td id"date"></td>-->
+            <td> <%=moment.utc(tasks[i].datos_titular.fecha_activacion).add(8,'d').format('LLL')%></td>
+            <td> <%=moment.utc(tasks[i].datos_titular.fecha_activacion).fromNow()%></td>
+             
+            <td>
+                    <a href="/turn/<%=tasks[i]._id%>" class=" btn <%=tasks[i].status ? ' btn-succes': 'btn btn-dark' %>">Done</a>
+                    <a id="delete" class="btn btn-danger" href="/delete/<%=tasks[i]._id%>">Delete</a>
+                    <a href="/edit/<%=tasks[i]._id%>" class="btn btn-info">Edit</a>
+                    </td>
+                    <td><%  if (moment.utc(tasks[i].datos_titular.fecha_activacion) > fecha    ) {%>
+                      
+                    
+                                            <div class="alert alert-info">
+                                                <strong>
+                                                    
+                                                </strong> todavia Hay tiempo
+                                              </div>
+                                                 <%} else {%>
+                                            
+                                                <div class="alert alert-danger">
+                                                    <strong></strong> Ya no hay tiempo
+                                                   
+                                                  </div>
+                                                
+                                                    <%}%> 
+                                                </td>
+
+                    </tr>
+                    <%}%>
+           
+                   
+           </tbody>
+                 </table>
+ </font>
+                 
+ 
+             </div>
+
+
+        </div>
+        
+                </div>
+</div>  
+  
+         
+
+              
+<% include partials/_footer%>

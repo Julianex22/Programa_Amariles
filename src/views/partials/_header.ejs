@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+          
+
+        <link rel = "stylesheet" href ="/static/styles/bootstrap-4.3.1-dist/css/bootstrap.min.css" />
+        <script src="/static/jquery/jquery-3.4.1.js"></script>
+        <script src= "../../static/jquery/myjquery.js"> </script>
+        <script src="../../static/push/push.js"></script>
+        <script src="../../static/js/javascript.js"></script>
+
+        <link rel="stylesheet" href="../../static/styles/bootstrap-4.3.1-dist/css_puro/styles.css">
+        <link rel="stylesheet" href="../../public/styles/bootstrap-4.3.1-dist/css/fontawesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+</head>
+<body id="body">
+
+    <!--<div class="container-fluid mb-5 mt-4 ">
+    
+        
+            <div class="row">
+                <div class="col-10 md-8 " id="barra">
+              <a href='/add' class="btn btn-outline-secondary">Ingresar información</a>
+              
+                           
+                
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                    Busqueda
+                  </button>
+                  
+                     
+                
+               <a href="/activos" class="btn btn-outline-secondary">Presentar Informacion</a></button> 
+               <a href='/cobro' class="btn btn-outline-secondary">Gestion de cobro</a></button>
+               <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                  Tareas
+                </button>
+               <a href='/tareas' class="btn btn-outline-secondary">Crear tarea</a></button>
+                </div>
+                   </div>         
+        
+    </div>-->
+
+     
+
+  <!-- Modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Busqueda</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><!--Body del modal-->
+            <!--Formulario para buscar por nombre-->
+              <div class="container mb-5" >
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card bg bg-light">
+                        <div class="card-body">
+                          <form action="/find"  method="post" >
+                            <div class="form-group">
+                              <input type="text" name="nombre_titular" id="buscar" placeholder="Inserte un nombre" class="form-control" required >
+                            </div>
+                              <button type="submit" class="btn btn-outline-secondary btn-block">Buscar por nombre</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+              </div>   
+
+                <!--Formulario para buscar por cedula-->
+
+              <div class="container mb-5" >
+                  <div class="col-md-12">
+                    <div class="card bg bg-light">
+                      <div class="card-body">
+                        <form action="/find/cedula"  method="post" >
+                          <div class="form-group">
+                            <input type="text" name="cedula" id="buscar" placeholder="Inserte una cedula" class="form-control" required >
+
+                          </div>
+                           <button type="submit" class="btn btn-outline-secondary btn-block">Buscar por cedula</button>
+                        </form>
+                      </div>
+                    </div>
+                 </div> 
+              </div>   
+                            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+           
+          </div>
+        </div>
+      </div>
+  </div>
+
+    <!-- Modal tareas-->
+  <div class="modal fade" id="modal_tarea" tabindex="-1" role="dialog" aria-labelledby="modal_tareaLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tarea</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><!--Body del modal-->
+            <div class="container-fluid" id="container"><!--Contenerdor principal-->
+                 <div class="row" id="fila-formulario"><!--primera fila-->
+                    <div class="col-md-12" id="columna-formulario" ><!--Columna del card principal-->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Tareas</h3>
+                            </div>
+
+                            <div class="card-body">
+                                <form action="/crear_tarea" method="post">
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <textarea class="form-control form-control-sm" name="descripcion" id="" cols="7" rows="5" placeholder="Describa su tarea" required></textarea>
+                                        </div> 
+                                    </div>
+      
+                                    <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="">Fecha de ejecucion</label>
+                                        <input class="form-control form-control-sm" type="datetime-local" name="fecha" id="" required>
+                                    </div>
+
+                                     <!--<div class="form-group col-md-5">
+                                        <label for="input_Fecha">Recordar (horas) antes:</label>
+                                            <select class="form-control" name="recordar" required>
+                                                <option name="recordar" ></option>
+                                                <option name="recordar" >1</option>
+                                                <option name="recordar" >2</option>
+                                                <option name="recordar" >3</option>
+                                                <option name="recordar" >4</option>
+                                                <option name="recordar" >5</option>
+                                                <option name="recordar" >6</option>
+                                                <option name="recordar" >7</option>
+                                                <option name="recordar" >8</option>
+                                                <option name="recordar" >9</option>
+                                                <option name="recordar" >10</option>
+                                                <option name="recordar" >11</option>
+                                                <option name="recordar" >12</option>
+                                                <option name="recordar" >13</option>
+                                                <option name="recordar" >14</option>
+                                                <option name="recordar" >15</option>
+                                                <option name="recordar" >16</option>
+                                                <option name="recordar" >17</option>
+                                                <option name="recordar" >18</option>
+                                                <option name="recordar" >19</option>
+                                                <option name="recordar" >20</option>
+                                                <option name="recordar" >21</option>
+                                                <option name="recordar" >22</option>
+                                                <option name="recordar" >23</option>
+                                                <option name="recordar" >24</option>
+                                           </select>
+                                    </div>-->
+
+                                    </div>
+                                
+                                  
+                                    
+                                    
+                         
+          
+                            <div class="form-row">
+                               <div class="col-md-2">
+                                   <button type="submit" class="btn btn-primary"  >Crear</button>
+                                   <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal_tarea">
+                                    Tareas
+                                  </button>
+                                </div>
+                            </div>
+      
+                            <br>
+                      </div>
+                    
+                      </form>
+      
+                        </div>
+                  </div>
+      
+              </div>
+               
+      </div>
+   </div>
+          
+          <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>

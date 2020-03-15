@@ -1,0 +1,511 @@
+<%- include partials/_header-%>
+<% include partials/menu%>
+
+<div class="container-fluid">
+
+
+
+
+
+    <!-- Formulario-->
+    <div class="card bg bg-light">
+        <div class="card text-center">
+            <div class="card-header">
+                <h2>Demandado</h2>
+                <!--Titulo de la primera seccion-->
+            </div>
+        </div>
+
+        <div class="card-body">
+            <form action="/add" method="post">
+                <!-- Datos generales del titular-->
+                <div class="form-row">
+                    <div class="form-group col-md-1" id="div_insertar_demandante">
+                        <label for="Cliente">Cliente:</label>
+                        <select class="form-control form-control-sm" name="cliente" id="Cliente" required>
+                            <option name="cliente"></option>
+                            <option name="cliente" id="option_name">AvalCrear</option>
+                            <option name="cliente">FGI</option>
+                            <option name="cliente">Proteccion</option>
+                            <option name="cliente">Soberana</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <label for="sel1">Tipo proceso:</label>
+                        <select class="form-control form-control-sm" name="tipo_proceso" id="sel1">
+                            <option name="tipo_proceso"></option>
+                            <option name="tipo_proceso">Ejecutivo</option>
+                            <option name="tipo_proceso">Restitucion</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="input_Nombre">Demandado</label>
+                        <input type="text" name="nombre" id="input_Nombre" placeholder="Inserte un nombre"
+                            class="form-control form-control-sm">
+                    </div>
+
+                    <div class="form-group col-md-1,5">
+                        <label for="input_Cedula">Cedula</label>
+                        <input type="texto" pattern="\d+" name="cedula" id="input_Cedula" cols="80" class="form-control form-control-sm" 
+                            placeholder="Inserte una cedula">
+                    </div>
+
+
+                    <div class="form-group col-md-2,5">
+                        <label for="input_Direccion">Direccion</label>
+                        <input type="text" name="direccion" id="" cols="80" class="form-control form-control-sm"
+                            placeholder="Inserte una direccion">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="input_Email">Email</label>
+                        <input type="email" name="email" id="input_Email" cols="80" class="form-control form-control-sm"
+                            placeholder="Inserte un email">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="input_Email">Capital</label>
+                        <input type="text" name="capital" id="input_capital" cols="80" class="form-control form-control-sm"
+                            placeholder="Inserte un valor">
+                    </div>
+
+                </div>
+                <div class="form-row" id="celdinamico_cliente">
+                    <div class="form-group col-md-2">
+                        <label for="input_Celular">Telefono</label>
+                        <input type="tel" name="tel" id="input_Celular" cols="90" class="form-control form-control-sm"
+                            placeholder="Inserte un # tel">
+
+                    </div>
+
+
+
+                    <!--Aqui va el textarea dinamico-->
+
+                </div>
+                <button class="btn-primary" type="button" onclick="add_celulardinamico_cliente()">+</button>
+                <button class="btn-primary" type="button" onclick="remover_celulardinamico_cliente()">-</button>
+                <br>
+                <br>
+
+
+
+
+                <!-- Datos generales del proceso-->
+
+                <div class="form-row">
+                    <!-- Juzgado-->
+                    <div class="form-group col-md-3">
+                        <label for="input_Juzgado">Juzgado</label>
+                        <input type="text" name="juzgado" id="input_Juzgado" cols="80" class="form-control form-control-sm"
+                            placeholder="Inserte un juzgado">
+                    </div>
+                    <!-- Radicado-->
+                    <div class="form-group col-md-3">
+                        <label for="input_Radicado">Radicado</label>
+                        <input type="text" name="radicado" id="input_Radicado" cols="80" class="form-control form-control-sm"
+                            placeholder="Inserte un numero de radicado">
+                    </div>
+
+                    <!-- Etapa actuacion procesal-->
+                    <div class="form-group col-md-3">
+                        <label for="sel2">Etapa Actuación Procesal:</label>
+                        <select class="form-control form-control-sm" id="input_etapa" name="instancia">
+                            <option></option>
+                            <option>Recepción</option>
+                            <option>Presentación</option>
+                            <option>Inadmite</option>
+                            <option>Admisión</option>
+                            <option>Notificación</option>
+                            <option>Sentencia</option>
+                            <option>Proceso_fallido</option>
+                            <option>Terminado</option>
+
+
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="input_Fecha">Fecha etapa</label>
+
+                        <input type="date" name="fecha_etapa" id="" cols="80" class="form-control form-control-sm">
+                        <!--<input type="time" name="fecha_activacion" id="input_Fecha" cols="80" class="form-control">-->
+                        <!-- <input type="datetime" name="fecha_activacion" step="1" min="2013-01-01T00:00Z" max="2013-12-31T12:00Z" value="2013-01-01T12:00">-->
+                    </div>
+                    <div class="form-group col-md-0,9">
+                        <label for="input_Fecha">Subrogado</label>
+                        <select class="form-control form-control-sm" name="subrogado" id="sel2">
+                            <option name="subrogado"></option>
+                            <option name="subrogado">Si</option>
+                            <option name="subrogado">No</option>
+                        </select>
+                    </div>
+
+                    <!-- Gestion de cobro-->
+                    <div class="form-group col-md-2">
+                        <label for="input_Fecha">Fecha activacion proceso</label>
+
+                        <input type="date" name="fecha_activacion" id="input_Fecha" cols="80" class="form-control form-control-sm">
+                        <!--<input type="time" name="fecha_activacion" id="input_Fecha" cols="80" class="form-control">-->
+                        <!-- <input type="datetime" name="fecha_activacion" step="1" min="2013-01-01T00:00Z" max="2013-12-31T12:00Z" value="2013-01-01T12:00">-->
+                    </div>
+                </div>
+
+
+                <!--contacto-->
+
+                <div class="card bg bg-light" id="padre_contactos">
+                    <div class="card-body">
+                        <div  class="form-row">
+                            <!--<div class="form-group">
+                                    <label for="textarea_Observaciones"></label>Observaciones</label>
+                                    <textarea class="form-control" name="observaciones" id="textarea_Observaciones" cols="60
+                                    " rows="4"></textarea>
+                                     </div>-->
+
+                            <div class="form-group-12">
+                                <label for="div-contacto">contacto 1</label>
+                                <div class="card" id="div-contacto">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="nombre_codeudor">Nombre</label>
+                                                <input class="form-control form-control-sm" type="text" name="contacto_nombre"
+                                                    id="nombre_contacto" placeholder="Inserte un Nombre">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="nombre_codeudor">Cedula</label>
+                                                <input class="form-control form-control-sm" type="text" name="contacto_cedula"
+                                                    id="cedula_contacto" placeholder="Inserte un No cedula">
+                                            </div>
+
+                                            
+
+
+                                            <div class="form-group">
+                                                <label for="nombre_codeudor">email</label>
+                                                <input class="form-control form-control-sm" type="email" name="contacto_email"
+                                                    id="email_contacto" placeholder="Inserte un email">
+                                            </div>
+                                            
+                                            <div class="form-row" id="padre_celdinamico_contacto0">
+
+                                                    <div class="form-group" >
+                                                        <label for="nombre_codeudor">Celular</label>
+                                                        <input class="form-control form-control-sm" type="text" name="contacto_celular1"
+                                                         id="celular_contacto" placeholder="Inserte No Celular">
+                                                                                              
+                                                   </div>
+                                                   <div class="form-group" >
+                                                    <label for="nombre_codeudor">Celular</label>
+                                                    <input class="form-control form-control-sm" type="text" name="contacto_celular1"
+                                                     id="celular_contacto" placeholder="Inserte No Celular">
+                                                                                          
+                                               </div>
+                                               <div class="form-group" >
+                                                <label for="nombre_codeudor">Celular</label>
+                                                <input class="form-control form-control-sm" type="text" name="contacto_celular1"
+                                                 id="celular_contacto" placeholder="Inserte No Celular">
+                                                                                      
+                                           </div>
+                                           <div class="form-group" >
+                                            <label for="nombre_codeudor">Celular</label>
+                                            <input class="form-control form-control-sm" type="text" name="contacto_celular1"
+                                             id="celular_contacto" placeholder="Inserte No Celular">
+                                                                                  
+                                       </div>
+                                                   <!-- Estos son los botones para agregar numeros telefonicos de contacto
+                                                        <button class="btn-primary" type="button" onclick="add_celulardinamico_contacto()">+</button>
+                                                        <button class="btn-primary" type="button" onclick="remover_celulardinamico_contacto()">-</button>-->
+                                            </div>
+
+                                            
+
+                                            
+
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div ><!-- Form-row-->
+                        
+                    </div>
+                    
+                </div>
+                    <div class="form-row">
+                        <div class="col-md-1 "><input type="button" class="btn btn-primary" id="add_observacion"
+                                onClick="add_contactos()" value="+" />
+                        </div>
+                        <div class="col-md-1 pl-md-5"><input type="button" class="btn btn-primary" id="add_observacion"
+                                onClick="remover_contactos()" value="-" />
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- Datos codeudor-->
+
+
+
+                <div class="card">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <h2>Codeudores</h2>
+                        </div>
+                    </div>
+                    <div class="card-body" id="codeudores">
+                        <!-- Datos codeudor1-->
+
+                        <div class="card bg bg-light" id="">
+
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="nombre_codeudor">Nombre</label>
+                                        <input class="form-control form-control-sm" type="text" name="codeudor_nombre"
+                                            id="nombre_codeudor" placeholder="Inserte un Nombre">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cedula_codeudor">Cedula</label>
+                                        <input class="form-control form-control-sm" type="text" name="codeudor_cedula"
+                                            id="cedula_codeudor" placeholder="Inserte un No cedula">
+                                    </div>
+
+                                    
+
+                                    <div class="form-group">
+                                        <label for="direccion_codeudor">Direccion</label>
+                                        <input class="form-control form-control-sm" type="text" name="codeudor_dir"
+                                            id="direccion_codeudor" placeholder="Inserte direccion">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="nombre_codeudor">email</label>
+                                        <input class="form-control form-control-sm" type="email" name="codeudor_email"
+                                            id="email_codeudor" placeholder="Inserte un email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="nombre_codeudor">Tel</label>
+                                        <input class="form-control form-control-sm" type="text" name="codeudor_tel0"
+                                            id="celular_codeudor" placeholder="Inserte No Celular">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre_codeudor">Tel</label>
+                                        <input class="form-control form-control-sm" type="text" name="codeudor_tel0"
+                                            id="celular_codeudor" placeholder="Inserte No Celular">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre_codeudor">Tel</label>
+                                        <input class="form-control form-control-sm" type="text" name="codeudor_tel0"
+                                            id="celular_codeudor" placeholder="Inserte No Celular">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre_codeudor">Tel</label>
+                                        <input class="form-control form-control-sm" type="text" name="codeudor_tel0"
+                                            id="celular_codeudor" placeholder="Inserte No Celular">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-1 "><input type="button" class="btn btn-primary" id="add_observacion"
+                                onClick="add_codeudores()" value="+" />
+                        </div>
+                        <div class="col-md-1 pl-md-5"><input type="button" class="btn btn-primary" id="add_observacion"
+                                onClick="remover_codeudores()" value="-" />
+                        </div>
+
+                    </div>
+
+                </div>
+                <br>
+
+                <!--Avance del proceso-->
+
+
+                <div class="card bg bg-light" id="card3">
+                    <!--Card principal-->
+                    <div class="card text-center">
+
+                        <div class="card-header">
+                            <h4>Avance Proceso</h4>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <!--Body del Card principal-->
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="card" id="card3">
+                                        <!--Card de las medidas cautelares-->
+                                        <div class="card-body">
+                                            <!--Body del Card de las medidas cautelares-->
+                                            <div class="form-group">
+                                                <div class="col-md-9" id="medidas">
+                                                    <!-- Este es el div padre sin clase col para que sea dinamico-->
+                                                    <label for="textarea_medidas">Medidas Cautelares</label>
+                                                    <textarea class="form-control form-control-sm" name="medidas" id="textarea_medidas"
+                                                        cols="50" rows="3"></textarea>
+                                                    <!--Aqui va el textarea dinamico-->
+                                                </div>
+                                                <div class="form-row pl-md-5 ">
+                                                    <div class="col-md-3 "><input type="button" class="btn btn-primary"
+                                                            id="add_observacion" onClick="add_medidas()" value="+" />
+                                                    </div>
+                                                    <div class="col-md-3 pl-md-5"><input type="button"
+                                                            class="btn btn-primary" id="add_observacion"
+                                                            onClick="removerMedida()" value="-" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-5">
+                                <div class="card bg bg-light" id="card3">
+                                    <!--Card de las actuaciones-->
+                                    <div class="card-body">
+                                        <!--Body del Card de las actuaciones-->
+                                        <div class="form-group">
+                                            <div class="col-md-9" id="actuacion">
+                                                <label for="textarea_actuaciones">Actuacion</label>
+                                                <textarea class="form-control form-control-sm" name="actuaciones"
+                                                    id="textarea_actuaciones" cols="50 " rows="3"></textarea>
+                                                <!--Aqui va el textarea dinamico-->
+                                            </div>
+                                            <div class="form-row pl-md-5 ">
+                                                <div class="col-md-3 "><input type="button" class="btn btn-primary"
+                                                        id="add_actuaciones" onClick="add_actuacion()"
+                                                        value="+" />
+                                                </div>
+                                                <div class="col-md-3 pl-md-5"><input type="button"
+                                                        class="btn btn-primary" id="add_actuaciones"
+                                                        onClick="removerActuacion()" value="-" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="card bg bg-light" id="card3">
+                                    <!--Card de los impulsos-->
+                                    <div class="card-body">
+                                        <!--body del Card de los impulsos-->
+                                        <div class="form-group">
+                                            <div class="col-md-9" id="impulso">
+                                                <label for="textarea_impulso_procesal">Impulso Procesal</label>
+                                                <textarea class="form-control form-control-sm" name="impulsos"
+                                                    id="textarea_impulso_procesal" cols="50" rows="3"></textarea>
+                                                <!--Aqui va el textarea dinamico-->
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-3"><input type="button" class="btn btn-primary"
+                                                        id="agregar_impulso" onClick="add_impulso()" value="+" />
+                                                </div>
+                                                <div class="col-md-3"><input type="button" class="btn btn-primary"
+                                                        id="remover_observacion" onClick="removerImpulso()"
+                                                        value="-" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <div class="card">
+                                        <div class="card-body">
+
+                                            <div class="col-md-9" id="observaciones">
+                                                <label for="textarea_medidas">Observaciones</label>
+                                                <textarea class="form-control form-control-sm" name="observaciones"
+                                                    id="textarea_observaciones" cols="50 " rows="3"></textarea>
+
+                                                <!--Aqui va el textarea dinamico-->
+                                            </div>
+                                            <!--Botones para insertar Campos de observacion-->
+
+                                            <div class="form-group">
+                                                <div class="form-row pl-md-5 ">
+                                                    <div class="col-md-3 "><input type="button" class="btn btn-primary"
+                                                            id="add_observacion" onClick="add_observaciones()"
+                                                            value="+" />
+                                                    </div>
+                                                    <div class="col-md-3 pl-md-5"><input type="button"
+                                                            class="btn btn-primary" id="add_observacion"
+                                                            onClick="removerObservacion()" value="-" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+        </div>
+
+    </div>
+    <br>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary btn-block col-md-4">Agregar información</button>
+            </div>
+        </div>
+
+
+
+    </div>
+    </form>
+</div>
+</div>
+<br>
+<br>
+<% include partials/_footer%>

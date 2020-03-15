@@ -1,0 +1,550 @@
+ 
+ <% include partials/_header%>
+ <% include partials/menu%>
+
+ <!-- Formulario-->
+ <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+            <form action="/edit/<%=task._id%>" method="post">
+                
+                <div class="card"><!--Card de Datos basicos-->
+                    <div class="card-body">
+                            <h5 class="card-title">Datos basicos</h5>
+                       <div class="form-row">
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label for="">Cliente</label>
+                                    <!-- <input type="text" class="form-control form-control-sm"  name="datos_cliente.nombre" id="" placeholder=""  value="<%=task.datos_cliente.nombre%>" > -->
+                                    <select class="form-control form-control-sm" name="datos_cliente.nombre" id="Cliente" required>
+                                        <option name="datos_cliente.nombre"><%=task.datos_cliente.nombre%></option>
+                                        <option name="datos_cliente.nombre" id="option_name">AvalCrear</option>
+                                        <option name="datos_cliente.nombre">FGI</option>
+                                        <option name="datos_cliente.nombre">Proteccion</option>
+                                        <option name="datos_cliente.nombre">Soberana</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                                <div class="col-auto">
+                                    <div class="form-group">
+                                        <label for="">Demandante</label>
+                                        <input type="text" class="form-control form-control-sm"  name="datos_demandante.nombre" id="" placeholder=""  value="<%=task.datos_demandante.nombre%>" >
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                        <div class="form-group">
+                                            <label for="">Cedula o Nit</label>
+                                            <input type="text" class="form-control form-control-sm"  name="datos_demandante.cedula" id="" placeholder=""   value="<%=task.datos_demandante.cedula%>" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="">Tipo Proceso</label>
+                                                <!-- <input type="text" class="form-control form-control-sm"  name="datos_cliente.tipo_proceso" id="" placeholder=""  value="<%=task.datos_cliente.tipo_proceso%>" > -->
+                                                <select class="form-control form-control-sm" name="datos_cliente.tipo_proceso" id="sel1">
+                                                    <option name="datos_cliente.tipo_proceso"><%=task.datos_cliente.tipo_proceso%></option>
+                                                    <option name="datos_cliente.tipo_proceso">Ejecutivo</option>
+                                                    <option name="datos_cliente.tipo_proceso">Restitucion</option>
+                        
+                                                </select>
+
+                                                
+                                            </div>
+                                        </div>
+
+                                       
+                                            <div class="col-auto">
+                                                    <div class="form-group">
+                                                        <label for="">Demandado</label>
+                                                        <input type="text" class="form-control form-control-sm"  name="datos_titular.nombre" id="" placeholder=""  value="<%=task.datos_titular.nombre%>" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                        <div class="form-group">
+                                                            <label for="">cedula</label>
+                                                            <input type="text" class="form-control form-control-sm"  name="datos_titular.cedula" id="" placeholder=""  value="<%=task.datos_titular.cedula%>" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                            <div class="form-group">
+                                                                <label for="">Direccion</label>
+                                                                <input type="text" class="form-control form-control-sm"  name="datos_titular.direccion" id="" placeholder=""  value="<%=task.datos_titular.direccion%>" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                                <div class="form-group">
+                                                                    <label for="">e-mail</label>
+                                                                    <input type="text" class="form-control form-control-sm"  name="datos_titular.email" id="" placeholder=""  value="<%=task.datos_titular.email%>" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <div class="form-group">
+                                                                    <label for="">Capital adeudado</label>
+                                                                    <input type="text" class="form-control form-control-sm"  name="datos_titular.capital_adeudado" id="" placeholder=""  value="<%=task.datos_titular.capital_adeudado%>" >
+                                                                </div>
+                                                            </div>
+
+
+                                                           
+                                                                <%for(var i = 0; i < task.datos_titular.tel.length; i++) {%>
+                                                                    <div class="col-auto">
+                                                                    <div class="form-group">
+                                                                        <label for="">celular</label>
+                                                                        <input type="text" class="form-control form-control-sm"  name="datos_titular.tel" id="" placeholder=""  value="<%=task.datos_titular.tel[i]%>" >
+                                                                    </div>
+                                                                </div>
+
+                                                                <%}%>
+                                                           
+                                                           
+
+    
+                       </div> 
+                    </div>
+                </div><!--Cierra Datos basicos card-->
+                
+
+
+
+  
+
+                                        <!-- Datos generales del proceso-->
+                                        <div class="card"><!-- Segundo Card-->
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Datos generales proceso</h5>
+                                                  
+                                               
+                                <div class="form-row">
+                                  
+                                      <div class="col-auto">
+                                            <div class="form-group">
+                                                    <label for="">Juzgado</label>
+                                                    <input type="text" class="form-control form-control-sm"  name="datos_titular.juzgado" id="" placeholder=""  value="<%=task.datos_titular.juzgado%>" >
+                                                </div>
+                                      
+                                      
+                                  </div>
+
+                                  
+                                        <div class="col-auto">
+                                              <div class="form-group">
+                                                      <label for="">radicado</label>
+                                                      <input type="text" class="form-control form-control-sm"  name="datos_titular.radicado" id="" placeholder=""  value="<%=task.datos_titular.radicado%>" >
+                                                  </div>
+                                        
+                                        
+                                    </div>
+
+                                    
+                                            <!--<div class="col-auto">
+                                                  <div class="form-group">
+                                                          <label for="">etapa proceso</label>
+                                                          <input type="text" class="form-control form-control-sm"  name="" id="" placeholder=""  value="<%=task.etapa.instancia%>" >
+                                                      </div>
+                                            </div>
+                                            
+                                        
+                                       
+                                                <div class="col-auto">
+                                                      
+                                                              
+                                                              <div class="form-group col-md-auto">
+                                                                    <label for="sel2">Nueva etapa:</label>
+                                                                    <select class="form-control" name="etapa.instancia" id="sel2">
+                                                                        <option name="datos_titular.etapa" value="<%=task.etapa.instancia[0]%>" selected disabled><%=task.datos_titular.etapa%></option>
+                                                                        <option name="datos_titular.etapa" >Presentación</option>
+                                                                        <option name="datos_titular.etapa" >Inadmite</option>
+                                                                        <option name="datos_titular.etapa" >Admisión</option>
+                                                                        <option name="datos_titular.etapa" >Notificación</option>
+                                                                        <option name="datos_titular.etapa" >Sentencia</option>
+                                                                        <option name="datos_titular.etapa" >Proceso fallido</option>
+                        
+                                                                    </select>
+                                                                </div> 
+                                                             
+                                                </div>-->
+                                                
+                                           
+
+                                        
+                                                <div class="col-auto">
+                                                      <div class="form-group">
+                                                              <label for="">subrogado</label>
+                                                             
+                                                              <select class="form-control form-control-sm" name="datos_titular.subrogado" id="sel2">
+                                                                <option name="datos_titular.subrogado"><%=task.datos_titular.subrogado%></option>
+                                                                <option name="datos_titular.subrogado">Si</option>
+                                                                <option name="datos_titular.subrogado">No</option>
+                                                            </select>
+                                                          </div>
+                                                
+                                                
+                                            </div>
+
+                                            <!--<div class="form-group">
+                                                    <div class="col-auto">
+                                                          <div class="form-group">
+                                                                  <label for="">fecha_activacion</label>
+                                                                  <input type="text" class="form-control form-control-sm"  name="" id="" placeholder="" readonly value="<%=moment(task.datos_titular.fecha_activacion).format('LLL')%>" >
+                                                              </div>
+                                                    </div>
+                                                    
+                                                </div>-->
+
+                                                <div class="form-group col-md-2">
+                                                    <label for="input_Fecha">fecha_activacion</label>
+                                                    
+                                                    <input type="date" name="datos_titular.fecha_activacion" id="input_Fecha" cols="80" class="form-control" value="<%=moment(task.datos_titular.fecha_activacion).format('YYYY-MM-DD')%>">
+                                                    
+                                                    <!-- <input type="datetime" name="fecha_activacion" step="1" min="2013-01-01T00:00Z" max="2013-12-31T12:00Z" value="2013-01-01T12:00">-->         
+                                                </div>
+
+                                                <div class="form-group col-md-2">
+                                                    <label for="input_Fecha">Fecha finalizacion</label>
+                                                    
+                                                    <input type="date" name="datos_titular.fecha_finalizacion" id="input_Fecha" cols="80" class="form-control" value="<%=moment(task.datos_titular.fecha_finalizacion).format('YYYY-MM-DD')%>">
+                                                    
+                                                    <!-- <input type="datetime" name="fecha_activacion" step="1" min="2013-01-01T00:00Z" max="2013-12-31T12:00Z" value="2013-01-01T12:00">-->         
+                                                </div>
+
+                                                
+
+                                                
+
+                                            </div>
+
+                                                                        
+                                        </div>
+                                        </div>
+                                          
+
+
+
+
+                                                                <!--contacto-->
+
+                                                                <div class="card"><!--card tercero-->
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">Datos contacto</h5>
+
+
+                                                                        <%for (var i=0; i < task.datos_contacto.nombre.length; i++) {%> 
+                                                                        <div class="form-row">
+                                                                                <div class="form-group">
+                                                                                        <div class="col">
+                                                                                              <div class="form-group">
+                                                                                                      <label for="">nombre</label>
+                                                                                                      <input type="text" class="form-control form-control-sm"  name="datos_contacto.nombre" id="" placeholder=""  value="<%=task.datos_contacto.nombre[i]%>" >
+                                                                                                  </div>
+                                                                                        </div>
+                                                                                        
+                                                                                    </div>
+                                                  
+                                                                                    <div class="form-group">
+                                                                                          <div class="col">
+                                                                                                <div class="form-group">
+                                                                                                        <label for="">cedula</label>
+                                                                                                        <input type="text" class="form-control form-control-sm"  name="datos_contacto.cedula" id="" placeholder=""  value="<%=task.datos_contacto.cedula[i]%>" >
+                                                                                                    </div>
+                                                                                          </div>
+                                                                                          
+                                                                                      </div>
+
+
+                                                                                      <div class="form-group">
+                                                                                                  <div class="col">
+                                                                                                        <div class="form-group">
+                                                                                                                <label for="">e-mail</label>
+                                                                                                                <input type="text" class="form-control form-control-sm"  name="datos_contacto.email" id="" placeholder=""  value="<%=task.datos_contacto.email[i]%>" >
+                                                                                                            </div>
+                                                                                                  </div>
+                                                                                                  
+                                                                                              </div>
+
+                                                                                              <%for (j=0; j < 4; j++ ) {%>
+                                                  
+                                                                                      <div class="form-group">
+                                                                                              <div class="col">
+                                                                                                    <div class="form-group">
+                                                                                                            <label for="">celular</label>
+                                                                                                            <input type="text" class="form-control form-control-sm"  name="<%if (i===0){%><%-'datos_contacto.celular1'%><%} else if (i===1){%><%-'datos_contacto.celular2'%><%} else if (i===2) {%><%-'datos_contacto.celular3'%><%} else if (i===3) {%><%-'datos_contacto.celular4'%><%}%>" id="" placeholder=""  value="<%if (i===0){%><%=task.datos_contacto.celular1[j]%>
+                                                                                                                                                                                                                                                                                                                                                                                                                                <%} else if (i===1) {%><%=task.datos_contacto.celular2[j]%>
+                                                                                                                                                                                                                                                                                                                                                                                                                                              <%} else if (i===2) {%><%=task.datos_contacto.celular3[j]%>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                  <%} else if (i===3) {%><%=task.datos_contacto.celular4[j]%>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                      <%} else if (i===4) {%><%=task.datos_contacto.celular5[j]%>      <%}%>">
+                                                                                                        </div>
+                                                                                              </div>
+                                                                                              
+                                                                                          </div>
+
+                                                                                          <%}%>
+                                                                                          </div>
+                                                                                          <hr>
+                                                                                          <%}%>
+                                                  
+                                                                                          
+                                                    
+                                                                        
+                                                                    </div>
+                                                                </div>
+
+
+
+
+                                          
+
+                                          <!-- Datos codeudores-->
+                                            <div class="card"><!-- Card codeudores-->
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Datos codeudores</h5>
+                                                        
+                                                            <%for(var i=0; i < task.datos_codeudor.nombre.length; i++) {%>
+                                                                <div class="form-row align-items-center">
+                                                                    <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="textarea_Observaciones">Codeudor</label>
+                                                                        <input type="text" class="form-control form-control-sm" name="datos_codeudor.nombre" id="" cols="80"  placeholder="Readonly input here..."  value="<%=task.datos_codeudor.nombre[i]%>">
+                                                                    </div>
+                                                                     </div>   
+                                                                     <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label for="textarea_Observaciones">Cedula</label>
+                                                                        <input type="text" class="form-control form-control-sm" name="datos_codeudor.cedula" id="" cols="80"  placeholder="Readonly input here..."  value="<%=task.datos_codeudor.cedula[i]%>">
+                                                                    </div>
+                                                                    </div>
+
+                                                                    
+
+                                                                        <div class="col">
+                                                                            <div class="form-group">
+                                                                                <label for="textarea_Observaciones">Direccion</label>
+                                                                                <input type="text" class="form-control form-control-sm" name="datos_codeudor.direccion" id="" cols="80"  placeholder=""  value="<%=task.datos_codeudor.direccion[i]%>">
+                                                                            </div>
+                                                                            </div>
+
+
+                                                                    <div class="col">
+                                                                    <div class="form-group">
+                                                                            <label for="textarea_Observaciones">Email</label>
+                                                                            <input type="text" class="form-control form-control-sm" name="datos_codeudor.email" id="" cols="80"  placeholder="Readonly input here..." aria-readonly=""  value="<%=task.datos_codeudor.email[i]%>">
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+
+
+                                                                    <div class="form-row align-items-center"> 
+                                                                        <% for (var j=0 ; j < 4; j++ ) {%>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label for="textarea_Observaciones">Telefono</label>
+                                                                            <input type="text" class="form-control form-control-sm" name="<%if (i===0){%><%-'datos_codeudor.celular0'%><%} else if (i===1){%><%-'datos_codeudor.celular1'%><%} else if (i===2) {%><%-'datos_codeudor.celular2'%><%} else if (i===3) {%><%-'datos_codeudor.celular3'%><%}%>"  id="" cols="80"  placeholder="" value="<%if (i===0){%><%=task.datos_codeudor.celular0[j]%><%}else if (i===1) {%><%=task.datos_codeudor.celular1[j]%><%}else if (i===2) {%><%=task.datos_codeudor.celular2[j]%><%}else if (i===3) {%><%=task.datos_codeudor.celular3[j]%><%}else if (i===4) {%><%=task.datos_codeudor.celular4[j]%><%}%>">
+                                                                        </div>
+                                                                        </div>
+                                                                        <%}%>
+                                                                 </div>
+                                                                 <hr>
+                                                            <%}%>
+
+                                                            
+                                                            
+                                                            
+                                                   
+                                                </div>
+
+                                                            <!--Avance de proceso-->
+                                             <div class="card">
+                                                    <div class="card-header">
+                                                            <h5>Avance proceso</h5>
+                                                    </div>
+
+
+                                                 <div class="card-body bg-light">
+                                                     <div class="form-row">
+                                                         
+                                                        
+
+                                                       
+
+                                                         <div class="bg-secondary col-md-auto" ><!--Este es card de las observaciones-->
+                                                     <%for(var i=0; i < task.avance_proceso.observaciones.length; i++) {%>
+                                                        
+                                                        <div class="card" style="width: 18rem;" >
+                                                                <div class="card-header">
+                                                                        Observacion
+                                                                </div>
+                                                                <div class="card-body">
+                                                                        <textarea class="form-control" name="avance_proceso.observaciones" id="" cols="30" rows="8"><%=task.avance_proceso.observaciones[i]%></textarea>
+                                                                  
+                                                                </div>
+                                                        </div>
+
+                                                               
+                                                     <%}%>   
+
+                                                     
+                                                    <div class="bg-danger col-auto " id="div_padre_observaciones">
+
+                                                          <!--Aqui se crean los card Nuevos-->
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-md-4">
+                                                              <input class="btn btn-primary" type="button" onclick="append_observacion_edit()" value="+"/> 
+                                                              
+                                                              <input class="btn btn-primary" type="button" onclick="remove_observacion_edit()" value="-"/> 
+                                                          </div>
+
+                                                      </div>
+
+                                                      </div>
+
+                                                      
+
+                                                     
+                                                      
+                                                   
+
+                                                     
+                                                      
+                                                      <div class="col-md-auto" id="padre_medidas">
+                                                            <%for(var i=0; i < task.avance_proceso.medidas.length; i++) {%>
+                                                               
+                                                               <div class="card" style="width: 18rem; " id="card_hijo_medidas">
+                                                                       <div class="card-header">
+                                                                               Medidas Cautelares
+                                                                             </div>
+                                                                       <div class="card-body">
+                                                                         <textarea class="form-control" name="avance_proceso.medidas" id="" cols="30" rows="10"><%=task.avance_proceso.medidas[i]%></textarea>
+                                                                       </div>
+                                                               </div>
+                                                                                         
+                                                                  
+                                                            <%}%>   
+                                                            <div class="bg-danger col-auto " id="div_padre_medidas">
+
+                                                                    <!--Aqui se crean los card Nuevos-->
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <input class="btn btn-primary" type="button" onclick="append_medida_edit()" value="+"/> 
+                                                                        
+                                                                        <input class="btn btn-primary" type="button" onclick="remove_medida_edit()" value="-"/> 
+                                                                    </div>
+          
+                                                                </div>  
+                                                             </div>
+                                                                
+
+
+
+
+
+                                                             <div class="col-md-auto">
+                                                                    <%for(var i=0; i < task.avance_proceso.actuaciones.length; i++) {%>
+                                                                       
+                                                                      
+
+                                                                       <div class="card" style="width: 18rem;">
+                                                                        <div class="card-header">
+                                                                                Actuaciones
+                                                                              </div>
+                                                                        <div class="card-body">
+                                                                            <textarea class="form-control" name="avance_proceso.actuaciones" id="" cols="30" rows="10"><%=task.avance_proceso.actuaciones[i]%></textarea>
+                                                                          
+                                                                          <!--<p class="card-text" name><%=task.avance_proceso.actuaciones[i]%></p>-->
+                                                                          
+                                                                        </div>
+                                                                </div>
+
+                                                                                                 
+                                                                          
+                                                                    <%}%> 
+                                                                    
+                                                                    <div class="bg-danger col-auto " id="div_padre_actuaciones">
+
+                                                                            <!--Aqui se crean los card Nuevos-->
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <input class="btn btn-primary" type="button" onclick="append_actuacion_edit()" value="+"/> 
+                                                                                
+                                                                                <input class="btn btn-primary" type="button" onclick="remove_actuacion_edit()" value="-"/> 
+                                                                            </div>
+                  
+                                                                        </div>
+
+
+                                                                     </div>
+
+
+
+
+
+
+
+
+                                                                     <div class="col-md-auto">
+                                                                            <%for(var i=0; i < task.avance_proceso.impulsos.length; i++) {%>
+                                                                               
+                                                                               <div class="card" style="width: 18rem;">
+                                                                                       <div class="card-header">
+                                                                                               Impulsos procesales
+                                                                                             </div>
+                                                                                       <div class="card-body">
+                                                                                         
+                                                                                        
+                                                                                         <textarea class="form-control" name="avance_proceso.impulsos" id="" cols="30" rows="8"><%=task.avance_proceso.impulsos[i]%></textarea>
+                                                                                       </div>
+                                                                               </div>
+                                                                                                         
+                                                                                  
+                                                                            <%}%>  
+                                                                            
+                                                                            <div class="bg-danger col-auto " id="div_padre_impulsos">
+
+                                                                                    <!--Aqui se crean los card Nuevos-->
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-4">
+                                                                                        <input class="btn btn-primary" type="button" onclick="append_impulso_edit()" value="+"/> 
+                                                                                        
+                                                                                        <input class="btn btn-primary" type="button" onclick="remove_impulso_edit()" value="-"/> 
+                                                                                    </div>
+                          
+                                                                                </div>
+                                                                             </div>
+
+                                                </div> 
+
+                                                  
+
+                                            </div>
+                                                    
+
+                                                 </div>
+
+            </div>     <!--Cierra principal card-body-->                                
+    </div><!--Cierra principal card-->
+
+
+</div><!--Cierra primer class-col-->
+
+
+
+
+        <div class="container">
+            <div class="form-row justify-content-md-center">
+                
+                    <div class="col col-md-5">
+                        <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
+                    </div>
+               
+            </div> 
+        </div> 
+             </div>
+         </form>
+        
+    </div>
+
+
+    <%include partials/_footer%>
